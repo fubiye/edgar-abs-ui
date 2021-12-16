@@ -14,6 +14,7 @@ import { DealComponent } from './deal/deal.component';
 import { DocumentComponent } from './document/document.component';
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
+import { AgGridModule } from 'ag-grid-angular';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { HomeComponent } from './home/home.component';
     MatSidenavModule,
     MatListModule,
     MatInputModule,
+    AgGridModule.withComponents([]),
     RouterModule.forRoot([
       {path:'', component: HomeComponent},
       {path:'portfolio', component: PortfolioComponent},
