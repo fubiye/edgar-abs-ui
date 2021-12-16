@@ -4,3 +4,11 @@
 @import "ag-grid-community/dist/styles/ag-grid.css";
 @import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.abs-w-100{
+  width: calc(100vw - 128px);;
+}
+
+.abs-title {
+  padding: 5px;
+}

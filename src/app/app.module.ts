@@ -7,6 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatInputModule} from '@angular/material/input';
+import {MatExpansionModule} from '@angular/material/expansion';
+
 
 import { SearchComponent } from './search/search.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
@@ -32,6 +34,7 @@ import { AgGridModule } from 'ag-grid-angular';
     MatSidenavModule,
     MatListModule,
     MatInputModule,
+    MatExpansionModule,
     AgGridModule.withComponents([]),
     RouterModule.forRoot([
       {path:'', component: HomeComponent},
