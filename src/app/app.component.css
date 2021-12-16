@@ -57,7 +57,12 @@ p {
 .sidenav {
   width: 8rem;
 }
-
+.nav-body {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  flex-direction: column;
+}
 svg.material-icons {
   height: 24px;
   width: auto;

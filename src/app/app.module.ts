@@ -6,11 +6,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
+import {MatInputModule} from '@angular/material/input';
+
 import { SearchComponent } from './search/search.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
 import { DealComponent } from './deal/deal.component';
 import { DocumentComponent } from './document/document.component';
 import { RouterModule } from '@angular/router';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -19,16 +22,17 @@ import { RouterModule } from '@angular/router';
     SearchComponent,
     PortfolioComponent,
     DealComponent,
-    DocumentComponent
+    DocumentComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MatSidenavModule,
     MatListModule,
+    MatInputModule,
     RouterModule.forRoot([
-      {path:'', component: SearchComponent},
-      {path:'search', component: SearchComponent},
+      {path:'', component: HomeComponent},
       {path:'portfolio', component: PortfolioComponent},
       {path:'deal', component: DealComponent},
       {path:'document', component: DocumentComponent}
