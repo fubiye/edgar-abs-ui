@@ -1,5 +1,5 @@
 .search-box {
-  margin: 10px 0px;
+  margin: 10px 0px 0px 0px;
   width: 60vw;
   line-height: 20rem;
   font-size: large;
@@ -15,4 +15,13 @@
   color: #222;
   overflow: hidden;
   box-sizing: content-box;
+}
+
+.search-box.has-search-result {
+  border-radius: 10px 10px 0px 0px;
+}
+
+.mat-list {
+  border: 2px solid #1976d2;
+  border-top-width: 0px;
 }

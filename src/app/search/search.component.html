@@ -1,2 +1,12 @@
-
-<input class="search-box" matInput placeholder="Search Deal, Property or anything you want" type="search"/>
+<input class="search-box" matInput placeholder="Search Company, Deal, Property or anything you want" type="search"
+[ngClass]="{'has-search-result':hasSearchResult}"
+(input)="onSearch($event)"
+[(ngModel)]="searchStr" />
+<mat-action-list role="list" *ngIf="hasSearchResult">
+  <div *ngFor="let result of results">
+    <button mat-list-item  role="listitem">
+      <b style="padding-right:2px">{{result.type}}: </b>
+      <span>{{result.content}}</span>
+    </button>
+  </div>
+</mat-action-list>
