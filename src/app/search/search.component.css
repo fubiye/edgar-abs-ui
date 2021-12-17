@@ -1,0 +1,18 @@
+.search-box {
+  margin: 10px 0px;
+  width: 60vw;
+  line-height: 20rem;
+  font-size: large;
+  height: 16px;
+  padding: 12px 16px;
+  font-size: 16px;
+  vertical-align: top;
+  outline: 0;
+  box-shadow: none;
+  border-radius: 10px;
+  border: 2px solid #c4c7ce;
+  background: #fff;
+  color: #222;
+  overflow: hidden;
+  box-sizing: content-box;
+}
