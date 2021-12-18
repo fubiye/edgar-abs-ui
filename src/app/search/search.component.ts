@@ -74,8 +74,10 @@ export class SearchComponent implements OnInit {
   }
 
   onItemClicked(item: SearchResult){
-    this.router.navigate(['/filing', item.record.cik]);
     this.results = [];
+    this.searchStr = item.record.name;
+    this.router.navigate(['/filing', item.record.cik]);
+
   }
 
 }
