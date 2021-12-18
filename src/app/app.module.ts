@@ -20,6 +20,7 @@ import { HomeComponent } from './home/home.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { FormsModule } from '@angular/forms';
 import { FilingBrowserComponent } from './filing-browser/filing-browser.component';
+import { StatisticsModule } from './statistics/statistics.module';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { FilingBrowserComponent } from './filing-browser/filing-browser.componen
     MatInputModule,
     MatExpansionModule,
     MatProgressSpinnerModule,
+    StatisticsModule,
     AgGridModule.withComponents([]),
     RouterModule.forRoot([
       {path:'', component: HomeComponent},
