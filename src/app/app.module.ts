@@ -9,7 +9,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatInputModule} from '@angular/material/input';
 import {MatExpansionModule} from '@angular/material/expansion';
-
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import { SearchComponent } from './search/search.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
@@ -20,7 +20,6 @@ import { HomeComponent } from './home/home.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { FormsModule } from '@angular/forms';
 import { FilingBrowserComponent } from './filing-browser/filing-browser.component';
-
 
 @NgModule({
   declarations: [
@@ -41,6 +40,7 @@ import { FilingBrowserComponent } from './filing-browser/filing-browser.componen
     MatListModule,
     MatInputModule,
     MatExpansionModule,
+    MatProgressSpinnerModule,
     AgGridModule.withComponents([]),
     RouterModule.forRoot([
       {path:'', component: HomeComponent},

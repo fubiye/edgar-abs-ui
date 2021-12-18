@@ -1,13 +1,17 @@
 <input class="search-box" matInput placeholder="Search Company, Deal, Property or anything you want" type="search"
-[ngClass]="{'has-search-result':hasSearchResult}"
-(input)="onSearch($event)"
-[(ngModel)]="searchStr" />
-<mat-action-list role="list" *ngIf="hasSearchResult">
-  <div *ngFor="let result of results">
-    <button mat-list-item  role="listitem">
-      <b style="padding-right:2px">{{result.type}}: </b>
-      <span>{{result.record.name}}</span>
-      <span>(cik: {{result.record.cik}})</span>
-    </button>
-  </div>
-</mat-action-list>
+  [ngClass]="{'has-search-result':hasSearchResult}" (input)="onSearch($event)" [(ngModel)]="searchStr" />
+<div class="search-result" *ngIf="hasSearchResult">
+  <mat-spinner *ngIf="loading; else resultList"></mat-spinner>
+  <ng-template  #resultList >
+    <mat-action-list role="list">
+      <div *ngFor="let result of results">
+        <button mat-list-item role="listitem" (click)="onItemClicked(result)">
+          <b style="padding-right:2px">{{result.type}}: </b>
+          <span>{{result.record.name}}</span>
+          <span>(CIK: {{result.record.cik}})</span>
+        </button>
+      </div>
+    </mat-action-list>
+  </ng-template>
+</div>
+
