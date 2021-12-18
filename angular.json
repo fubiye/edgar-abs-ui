@@ -72,7 +72,8 @@
               "browserTarget": "edgar-abs-ui:build:production"
             },
             "development": {
-              "browserTarget": "edgar-abs-ui:build:development"
+              "browserTarget": "edgar-abs-ui:build:development",
+              "proxyConfig": "proxy.config.json"
             }
           },
           "defaultConfiguration": "development"
