@@ -1,0 +1,4 @@
+<app-search [options]="searchOpts"></app-search>
+<div *ngIf="company$ | async as company">
+  <p>cik: {{company.cik}}</p>
+</div>

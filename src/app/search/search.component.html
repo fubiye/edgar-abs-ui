@@ -6,7 +6,8 @@
   <div *ngFor="let result of results">
     <button mat-list-item  role="listitem">
       <b style="padding-right:2px">{{result.type}}: </b>
-      <span>{{result.content}}</span>
+      <span>{{result.record.name}}</span>
+      <span>(cik: {{result.record.cik}})</span>
     </button>
   </div>
 </mat-action-list>

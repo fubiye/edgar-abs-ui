@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Component, Input, OnInit } from '@angular/core';
+import { SearchOptions, SearchResult, SearchScope } from './search.model';
 
 const SEARCH_RESULT_LIMIT = 5;
 
@@ -9,6 +10,8 @@ const SEARCH_RESULT_LIMIT = 5;
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
+  @Input()
+  options!: SearchOptions;
   searchStr: string = '';
   inventory: string[] = [];
   results: any[] = [];
@@ -36,16 +39,29 @@ export class SearchComponent implements OnInit {
       return;
     }
     this.timeoutId = setTimeout(() => {
-      const query = this.searchStr.toLowerCase();
-      const matched = this.inventory.filter(company => company.toLowerCase().includes(query));
-      const length = matched.length > SEARCH_RESULT_LIMIT ? SEARCH_RESULT_LIMIT : matched.length;
-      this.results = matched.slice(0, length).map((company) => {
-        return {
-          type: 'Company',
-          content: company
-        };
-      });
+      this.searchOnServer();
     }, 500)
+  }
+
+  searchByLocalInentory(){
+    const query = this.searchStr.toLowerCase();
+    const matched = this.inventory.filter(company => company.toLowerCase().includes(query));
+    const length = matched.length > SEARCH_RESULT_LIMIT ? SEARCH_RESULT_LIMIT : matched.length;
+    this.results = matched.slice(0, length).map((company) => {
+      return {
+        type: 'Company',
+        content: company
+      };
+    });
+  }
+
+  searchOnServer(){
+    let params = new HttpParams();
+    const scope = this.options.scope ? this.options.scope : SearchScope.ALL;
+    params = params.append("scope", scope).append("wd", this.searchStr);
+    this.http.get("/api/s",{params: params}).subscribe((searchResultSet: any) => {
+      this.results = searchResultSet as SearchResult[];
+    })
   }
 
   isSearchEmpty(): boolean {

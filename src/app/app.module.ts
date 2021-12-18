@@ -19,6 +19,7 @@ import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { FormsModule } from '@angular/forms';
+import { FilingBrowserComponent } from './filing-browser/filing-browser.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { FormsModule } from '@angular/forms';
     PortfolioComponent,
     DealComponent,
     DocumentComponent,
-    HomeComponent
+    HomeComponent,
+    FilingBrowserComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +46,8 @@ import { FormsModule } from '@angular/forms';
       {path:'', component: HomeComponent},
       {path:'portfolio', component: PortfolioComponent},
       {path:'deal', component: DealComponent},
-      {path:'document', component: DocumentComponent}
+      {path:'filing', component: FilingBrowserComponent},
+      {path:'filing/:cik', component: FilingBrowserComponent}
     ])
   ],
   providers: [],
