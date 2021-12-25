@@ -1,3 +1,24 @@
-<div>
-<app-filing-by-year></app-filing-by-year>
-</div>
+<mat-accordion>
+  <mat-expansion-panel class="abs-w-100" expanded>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Overview
+      </mat-panel-title>
+      <mat-panel-description>
+        SEC ABS Filings Since 1994 (Total: 359,974)
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <app-filing-by-year></app-filing-by-year>
+  </mat-expansion-panel>
+  <mat-expansion-panel class="abs-w-100" expanded>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Relationship
+      </mat-panel-title>
+      <mat-panel-description>
+        Asset-Backed Securities, Underlying Loans etc.
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <app-relationship></app-relationship>
+  </mat-expansion-panel>
+</mat-accordion>

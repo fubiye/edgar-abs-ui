@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable, of, switchMap } from 'rxjs';
@@ -10,13 +11,15 @@ import { SearchOptions, SearchScope } from '../search/search.model';
   styleUrls: ['./filing-browser.component.css']
 })
 export class FilingBrowserComponent implements OnInit {
-  public searchOpts: SearchOptions =  {
+  public searchOpts: SearchOptions = {
     scope: SearchScope.COMPANY
   }
   public company$!: Observable<Company>;
+  public record: any;
 
   constructor(
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private httpClient: HttpClient
   ) {
     this.company$ = this.route.paramMap.pipe(
       switchMap((params: ParamMap) => {
@@ -29,6 +32,12 @@ export class FilingBrowserComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.company$.subscribe((company: Company) => {
+      return this.httpClient.get("/assets/example/CIK0001706303.json")
+        .subscribe(filings => {
+          this.record = filings;
+        });
+    });
   }
 
 }

@@ -5,11 +5,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatListModule} from '@angular/material/list';
-import {MatInputModule} from '@angular/material/input';
-import {MatExpansionModule} from '@angular/material/expansion';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatInputModule } from '@angular/material/input';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { SearchComponent } from './search/search.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
@@ -21,6 +21,8 @@ import { AgGridModule } from 'ag-grid-angular';
 import { FormsModule } from '@angular/forms';
 import { FilingBrowserComponent } from './filing-browser/filing-browser.component';
 import { StatisticsModule } from './statistics/statistics.module';
+import { RelationshipComponent } from './relationship/relationship.component';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { StatisticsModule } from './statistics/statistics.module';
     DealComponent,
     DocumentComponent,
     HomeComponent,
-    FilingBrowserComponent
+    FilingBrowserComponent,
+    RelationshipComponent
   ],
   imports: [
     BrowserModule,
@@ -42,14 +45,15 @@ import { StatisticsModule } from './statistics/statistics.module';
     MatInputModule,
     MatExpansionModule,
     MatProgressSpinnerModule,
+    MatCardModule,
     StatisticsModule,
     AgGridModule.withComponents([]),
     RouterModule.forRoot([
-      {path:'', component: HomeComponent},
-      {path:'portfolio', component: PortfolioComponent},
-      {path:'deal', component: DealComponent},
-      {path:'filing', component: FilingBrowserComponent},
-      {path:'filing/:cik', component: FilingBrowserComponent}
+      { path: '', component: HomeComponent },
+      { path: 'portfolio', component: PortfolioComponent },
+      { path: 'deal', component: DealComponent },
+      { path: 'filing', component: FilingBrowserComponent },
+      { path: 'filing/:cik', component: FilingBrowserComponent }
     ])
   ],
   providers: [],

@@ -1,4 +1,68 @@
 <mat-divider></mat-divider>
-<div *ngIf="company$ | async as company">
-  <p>cik: {{company.cik}}</p>
-</div>
+<mat-expansion-panel class="abs-w-100" *ngIf="record" expanded togglePosition="before">
+  <mat-expansion-panel-header>
+    <mat-panel-title class="fw-bold">
+      Company <span class="ms-2">{{record.name}}</span>
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <div class="d-flex flex-row justify-content-between">
+    <div class="d-flex flex-column m-2">
+      <div class="d-flex flex-column mb-4">
+        <div class="fw-bold">CIK:(Central Index Key)</div>
+        <div>{{record.cik}}</div>
+      </div>
+      <div class="d-flex flex-column mb-4">
+        <div class="fw-bold">SIC(Standard Industrial Classification)</div>
+        <div>
+          <span>{{record.sic}}</span> - <span>{{record.sicDescription}}</span>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex flex-column m-2">
+      <div class="d-flex flex-column mb-4">
+        <div class="fw-bold">State location:</div>
+        <div>{{record.addresses.mailing.stateOrCountry}}</div>
+      </div>
+      <div class="d-flex flex-column mb-4">
+        <div class="fw-bold">State of incorporation:</div>
+        <div>
+          <span>{{record.stateOfIncorporation}}</span>
+        </div>
+      </div>
+      <div class="d-flex flex-column mb-4">
+        <div class="fw-bold">Fiscal year end:</div>
+        <div>
+          <span>{{record.fiscalYearEnd ? record.fiscalYearEnd : 'December 31'}}</span>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex flex-column m-2">
+      <div class="d-flex flex-column mb-4">
+        <div class="fw-bold">Business address:</div>
+        <div>
+          <div>
+            {{record.addresses.business.street1}},{{record.addresses.business.city}},{{record.addresses.business.stateOrCountry}},{{record.addresses.business.zipCode}}
+          </div>
+          <div>
+            Phone: {{record.phone}}
+          </div>
+        </div>
+      </div>
+      <div class="d-flex flex-column mb-4">
+        <div class="fw-bold">Mailing address:</div>
+        <div>
+          {{record.addresses.mailing.street1}},{{record.addresses.mailing.city}},{{record.addresses.mailing.stateOrCountry}},{{record.addresses.mailing.zipCode}}
+        </div>
+      </div>
+    </div>
+    <div class="d-flex flex-column m-2">
+      <div class="d-flex flex-column mb-4">
+        <div class="fw-bold">Filings:</div>
+        <div>
+          {{record.filings.recent.accessionNumber.length}} EDGAR filings since
+          {{record.filings.recent.filingDate[record.filings.recent.filingDate.length -1] | date}}
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-expansion-panel>
