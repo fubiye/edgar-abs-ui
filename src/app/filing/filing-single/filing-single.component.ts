@@ -14,7 +14,7 @@ export class FilingSingleComponent implements OnInit {
   public accession$!: Observable<Accession>;
   public index: any;
   public items: any[] = [];
-
+  public displayedColumns: string[] = ['name', 'size', 'last-modified'];
   constructor(
     private route: ActivatedRoute,
     private httpClient: HttpClient

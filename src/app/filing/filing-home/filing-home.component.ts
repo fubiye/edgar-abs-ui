@@ -21,7 +21,7 @@ export class FilingHomeComponent implements OnInit {
   public company$!: Observable<Company>;
   public record: any;
   public records: FilingRecord[] = [];
-
+  public infoEexpanded: boolean = true;
   constructor(
     private route: ActivatedRoute,
     private httpClient: HttpClient,
@@ -29,6 +29,8 @@ export class FilingHomeComponent implements OnInit {
   ) {
     this.company$ = this.route.paramMap.pipe(
       switchMap((params: ParamMap) => {
+        this.infoEexpanded = params.get('accessionNum') === undefined;
+
         return of({
           cik: params.get('cik'),
           name: ''

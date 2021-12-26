@@ -11,8 +11,8 @@ import { FilingSingleComponent } from './filing-single/filing-single.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-
-
+import { MatTableModule } from '@angular/material/table';
+import { FilingFileComponent } from './filing-file/filing-file.component';
 
 @NgModule({
   declarations: [
@@ -20,12 +20,14 @@ import { MatIconModule } from '@angular/material/icon';
     FilingStatusComponent,
     FilingFormComponent,
     FilingHomeComponent,
-    FilingSingleComponent
+    FilingSingleComponent,
+    FilingFileComponent
   ],
   imports: [
     MatExpansionModule,
     MatButtonModule,
     MatIconModule,
+    MatTableModule,
     BrowserModule,
     FilingRoutingModule,
     AgGridModule.withComponents([])

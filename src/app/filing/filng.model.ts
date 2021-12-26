@@ -17,7 +17,8 @@ export interface FilingRecord {
 
 export interface Accession {
   cik: string;
-  accessionNum: string;
+  accessionNum?: string;
+  fileName?: string;
 }
 
 export interface LookUpData {
