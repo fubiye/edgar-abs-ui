@@ -6,6 +6,7 @@ import { ColDef } from 'ag-grid-community';
 import { FilingStatusComponent } from '../filing-renderers/filing-status/filing-status.component';
 import { FilingRecord, LookUpData } from '../filng.model';
 import { selectFilingRecords } from 'src/app/state/filing/filing.selectors';
+import { FilingFormComponent } from '../filing-renderers/filing-form/filing-form.component';
 
 @Component({
   selector: 'app-filing-table',
@@ -21,6 +22,7 @@ export class FilingTableComponent implements OnInit {
     flex: 1
   }, {
     headerName: 'Form Description',
+    cellRenderer: 'filingForm',
     valueGetter: (params) => {
       const form = params.data.form;
       const definedForm = this.lookup.submissionForms[params.data.form];
@@ -51,6 +53,7 @@ export class FilingTableComponent implements OnInit {
   }];
 
   public frameworkComponents = {
+    filingForm: FilingFormComponent,
     filingStatus: FilingStatusComponent
   }
 
