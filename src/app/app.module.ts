@@ -24,6 +24,7 @@ import { StatisticsModule } from './statistics/statistics.module';
 import { RelationshipComponent } from './relationship/relationship.component';
 import { MatCardModule } from '@angular/material/card';
 import { FilingModule } from './filing/filing.module';
+import { StateModule } from './state/state.module';
 
 @NgModule({
   declarations: [
@@ -48,14 +49,14 @@ import { FilingModule } from './filing/filing.module';
     MatProgressSpinnerModule,
     MatCardModule,
     StatisticsModule,
+    StateModule,
     FilingModule,
     AgGridModule.withComponents([]),
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
       { path: 'portfolio', component: PortfolioComponent },
       { path: 'deal', component: DealComponent },
-      { path: 'filing', component: FilingBrowserComponent },
-      { path: 'filing/:cik', component: FilingBrowserComponent }
+      { path: 'filing', component: FilingBrowserComponent }
     ])
   ],
   providers: [],

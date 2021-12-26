@@ -1,9 +1,11 @@
 import { HttpClient } from '@angular/common/http';
+import { Store } from '@ngrx/store';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { AgGridAngular } from 'ag-grid-angular';
 import { ColDef } from 'ag-grid-community';
 import { FilingStatusComponent } from '../filing-renderers/filing-status/filing-status.component';
 import { FilingRecord, LookUpData } from '../filng.model';
+import { selectFilingRecords } from 'src/app/state/filing/filing.selectors';
 
 @Component({
   selector: 'app-filing-table',
@@ -11,9 +13,7 @@ import { FilingRecord, LookUpData } from '../filng.model';
   styleUrls: ['./filing-table.component.css']
 })
 export class FilingTableComponent implements OnInit {
-
-  @Input()
-  public records: FilingRecord[] = [];
+  public records$ = this.store.select(selectFilingRecords);
 
   public columnDefs: ColDef[] = [{
     headerName: 'Form type',
@@ -62,7 +62,8 @@ export class FilingTableComponent implements OnInit {
     itemDescriptions: {}
   };
   constructor(
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private store: Store
   ) { }
 
   ngOnInit(): void {
