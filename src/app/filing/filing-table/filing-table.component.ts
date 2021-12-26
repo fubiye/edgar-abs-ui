@@ -7,6 +7,8 @@ import { FilingStatusComponent } from '../filing-renderers/filing-status/filing-
 import { FilingRecord, LookUpData } from '../filng.model';
 import { selectFilingRecords } from 'src/app/state/filing/filing.selectors';
 import { FilingFormComponent } from '../filing-renderers/filing-form/filing-form.component';
+import { updateFilingRecordsAction } from 'src/app/state/filing/filing.actions';
+import { StateService } from 'src/app/state/state.service';
 
 @Component({
   selector: 'app-filing-table',
@@ -14,7 +16,6 @@ import { FilingFormComponent } from '../filing-renderers/filing-form/filing-form
   styleUrls: ['./filing-table.component.css']
 })
 export class FilingTableComponent implements OnInit {
-  public records$ = this.store.select(selectFilingRecords);
 
   public columnDefs: ColDef[] = [{
     headerName: 'Form type',
@@ -66,14 +67,19 @@ export class FilingTableComponent implements OnInit {
   };
   constructor(
     private httpClient: HttpClient,
-    private store: Store
+    private store: Store,
+    private stateSvc: StateService
   ) { }
 
   ngOnInit(): void {
     this.httpClient.get('/assets/lookup-data.json').subscribe((lookup) => {
       this.lookup = lookup as LookUpData;
       this.agGrid.api.redrawRows();
-    })
+    });
+  }
+
+  get records() {
+    return this.stateSvc.filingRecords;
   }
 
 }

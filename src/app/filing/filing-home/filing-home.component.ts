@@ -9,6 +9,7 @@ import { SearchOptions, SearchScope } from 'src/app/search/search.model';
 import { selectedAccessionAction } from 'src/app/state/accession/accession.actions';
 import { selectAccession } from 'src/app/state/accession/accession.selectors';
 import { retrievedFilingRecordsAction } from 'src/app/state/filing/filing.actions';
+import { StateService } from 'src/app/state/state.service';
 import { Accession, FilingRecord } from '../filng.model';
 
 @Component({
@@ -30,7 +31,8 @@ export class FilingHomeComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private httpClient: HttpClient,
-    private store: Store
+    private store: Store,
+    private stateSvc: StateService
   ) {
     this.company$ = this.route.paramMap.pipe(
       switchMap((params: ParamMap) => {
@@ -71,6 +73,7 @@ export class FilingHomeComponent implements OnInit {
             })
           }
           this.records = records;
+          this.stateSvc.filingRecords = records;
           this.store.dispatch(retrievedFilingRecordsAction({ records }))
         });
     });
