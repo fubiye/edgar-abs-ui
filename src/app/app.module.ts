@@ -57,7 +57,7 @@ import { StateModule } from './state/state.module';
       { path: 'portfolio', component: PortfolioComponent },
       { path: 'deal', component: DealComponent },
       { path: 'filing', component: FilingBrowserComponent }
-    ])
+    ], { paramsInheritanceStrategy: 'always' })
   ],
   providers: [],
   bootstrap: [AppComponent]
