@@ -1,1 +1,7 @@
-<p>filing-single works!</p>
+<button type="button" class="btn btn-outline-primary" [routerLink]="'../'">
+  <i class="bi bi-arrow-left me-2"></i>
+  <span>Back</span>
+</button>
+<ul>
+  <li *ngFor="let item of items">{{item.name}} </li>
+</ul>

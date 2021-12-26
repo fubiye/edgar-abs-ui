@@ -15,6 +15,11 @@ export interface FilingRecord {
   primaryDocDescription: string;
 }
 
+export interface Accession {
+  cik: string;
+  accessionNum: string;
+}
+
 export interface LookUpData {
   submissionForms: { [key: string]: string },
   itemDescriptions: { [key: string]: string }
