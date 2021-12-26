@@ -36,7 +36,8 @@ export class FilingSingleComponent implements OnInit {
 
   ngOnInit(): void {
     this.accession$.subscribe((accession: Accession) => {
-      this.httpClient.get('/assets/example/1706403_000153949717000912_index.json').subscribe((filingIndex: any) => {
+      const accessionNum = accession.accessionNum?.replace(/-/g, '');
+      this.httpClient.get(`/api/filing/${accession.cik}/${accessionNum}`).subscribe((filingIndex: any) => {
         this.index = filingIndex.directory;
         this.items = this.index.item.filter((item: any) => !item.type.includes('image'))
       })

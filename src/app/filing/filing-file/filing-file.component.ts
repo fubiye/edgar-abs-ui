@@ -32,7 +32,7 @@ export class FilingFileComponent implements OnInit {
   }
 
   loadFile(): void {
-    const accessionNum = this.accession?.accessionNum?.replace("-", '');
+    const accessionNum = this.accession.accessionNum?.replace(/-/g, '');
     this.httpClient.get(`/api/filing/${this.accession?.cik}/${accessionNum}/${this.accession.fileName}`, { responseType: 'text' }).subscribe((html: any) => {
       this.html = html;
     })
