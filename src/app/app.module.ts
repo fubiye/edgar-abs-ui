@@ -23,6 +23,7 @@ import { FilingBrowserComponent } from './filing-browser/filing-browser.componen
 import { StatisticsModule } from './statistics/statistics.module';
 import { RelationshipComponent } from './relationship/relationship.component';
 import { MatCardModule } from '@angular/material/card';
+import { FilingModule } from './filing/filing.module';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { MatCardModule } from '@angular/material/card';
     MatProgressSpinnerModule,
     MatCardModule,
     StatisticsModule,
+    FilingModule,
     AgGridModule.withComponents([]),
     RouterModule.forRoot([
       { path: '', component: HomeComponent },

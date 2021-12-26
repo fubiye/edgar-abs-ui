@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable, of, switchMap } from 'rxjs';
 import { Company } from '../app.model';
+import { FilingRecord } from '../filing/filng.model';
 import { SearchOptions, SearchScope } from '../search/search.model';
 
 @Component({
@@ -16,6 +17,7 @@ export class FilingBrowserComponent implements OnInit {
   }
   public company$!: Observable<Company>;
   public record: any;
+  public records: FilingRecord[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -33,9 +35,30 @@ export class FilingBrowserComponent implements OnInit {
 
   ngOnInit(): void {
     this.company$.subscribe((company: Company) => {
-      return this.httpClient.get("/assets/example/CIK0001706303.json")
+      return this.httpClient.get("/assets/example/CIK0001706403.json")
         .subscribe(filings => {
           this.record = filings;
+          const records = [] as FilingRecord[];
+          const recentFilings = this.record.filings.recent;
+          for (let idx = 0; idx < recentFilings.accessionNumber.length; idx++) {
+            records.push({
+              form: recentFilings.form[idx],
+              fileNumber: recentFilings.fileNumber[idx],
+              filmNumber: recentFilings.filmNumber[idx],
+              items: recentFilings.items[idx],
+              accessionNumber: recentFilings.accessionNumber[idx],
+              filingDate: recentFilings.filingDate[idx],
+              reportDate: recentFilings.reportDate[idx],
+              acceptanceDateTime: recentFilings.acceptanceDateTime[idx],
+              act: recentFilings.act[idx],
+              size: recentFilings.size[idx],
+              isXBRL: recentFilings.isXBRL[idx],
+              isInlineXBRL: recentFilings.isInlineXBRL[idx],
+              primaryDocument: recentFilings.primaryDocument[idx],
+              primaryDocDescription: recentFilings.primaryDocDescription[idx]
+            })
+          }
+          this.records = records;
         });
     });
   }
