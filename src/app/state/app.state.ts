@@ -1,5 +1,6 @@
-import { FilingRecord } from "../filing/filng.model";
+import { Accession, FilingRecord } from "../filing/filng.model";
 
 export interface AppState {
-  filingRecords: ReadonlyArray<FilingRecord>;
+  filingRecords: FilingRecord[];
+  accession: Accession;
 }

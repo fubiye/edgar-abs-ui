@@ -16,7 +16,7 @@ export interface FilingRecord {
 }
 
 export interface Accession {
-  cik: string;
+  cik?: string;
   accessionNum?: string;
   fileName?: string;
 }

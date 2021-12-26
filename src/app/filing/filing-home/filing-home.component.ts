@@ -1,12 +1,15 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit, ViewChild } from '@angular/core';
+import { MatExpansionPanel } from '@angular/material/expansion';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, switchMap, of } from 'rxjs';
 import { Company } from 'src/app/app.model';
 import { SearchOptions, SearchScope } from 'src/app/search/search.model';
+import { selectedAccessionAction } from 'src/app/state/accession/accession.actions';
+import { selectAccession } from 'src/app/state/accession/accession.selectors';
 import { retrievedFilingRecordsAction } from 'src/app/state/filing/filing.actions';
-import { FilingRecord } from '../filng.model';
+import { Accession, FilingRecord } from '../filng.model';
 
 @Component({
   selector: 'app-filing-home',
@@ -14,14 +17,16 @@ import { FilingRecord } from '../filng.model';
   styleUrls: ['./filing-home.component.css']
 })
 export class FilingHomeComponent implements OnInit {
-
+  public accession$: Observable<Accession> = this.store.select(selectAccession);
   public searchOpts: SearchOptions = {
     scope: SearchScope.COMPANY
   }
   public company$!: Observable<Company>;
   public record: any;
   public records: FilingRecord[] = [];
-  public infoEexpanded: boolean = true;
+  public infoExpanded: boolean = true;
+  @ViewChild('detailExpansion')
+  public detailExpansion!: MatExpansionPanel;
   constructor(
     private route: ActivatedRoute,
     private httpClient: HttpClient,
@@ -29,8 +34,9 @@ export class FilingHomeComponent implements OnInit {
   ) {
     this.company$ = this.route.paramMap.pipe(
       switchMap((params: ParamMap) => {
-        this.infoEexpanded = params.get('accessionNum') === undefined;
-
+        this.store.dispatch(selectedAccessionAction({
+          accession: { cik: params.get('cik') as string } as Accession
+        }))
         return of({
           cik: params.get('cik'),
           name: ''
@@ -68,5 +74,14 @@ export class FilingHomeComponent implements OnInit {
           this.store.dispatch(retrievedFilingRecordsAction({ records }))
         });
     });
+    this.accession$.subscribe((accession: Accession) => {
+      setTimeout(() => {
+        this.infoExpanded = !accession || !accession.accessionNum;
+      }, 100)
+    })
+  }
+
+  public getExpanded() {
+    return this.infoExpanded;
   }
 }

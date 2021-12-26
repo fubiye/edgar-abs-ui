@@ -1,4 +1,4 @@
-<mat-expansion-panel class="abs-w-100" *ngIf="record" [expanded]="infoEexpanded" togglePosition="before">
+<mat-expansion-panel class="abs-w-100" *ngIf="record" [expanded]="getExpanded()" togglePosition="before">
   <mat-expansion-panel-header>
     <mat-panel-title class="fw-bold">
       Company <span class="ms-2">{{record.name}}</span>

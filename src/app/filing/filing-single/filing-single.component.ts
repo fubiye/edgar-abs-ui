@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable, of, switchMap } from 'rxjs';
 import { Accession } from '../filng.model';
+import { Store } from '@ngrx/store';
+import { selectedAccessionAction } from 'src/app/state/accession/accession.actions';
 
 @Component({
   selector: 'app-filing-single',
@@ -17,14 +19,17 @@ export class FilingSingleComponent implements OnInit {
   public displayedColumns: string[] = ['name', 'size', 'last-modified'];
   constructor(
     private route: ActivatedRoute,
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private store: Store
   ) {
     this.accession$ = this.route.paramMap.pipe(
       switchMap((params: ParamMap) => {
-        return of({
+        const accession = {
           cik: params.get('cik'),
           accessionNum: params.get('accessionNum')
-        } as Accession)
+        } as Accession;
+        this.store.dispatch(selectedAccessionAction({ accession }));
+        return of(accession)
       })
     )
   }

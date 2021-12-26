@@ -12,8 +12,6 @@ const filingRoutes: Routes = [
       path: ':accessionNum', component: FilingSingleComponent,
       children: [{
         path: ':fileName', component: FilingFileComponent
-      }, {
-        path: '**', component: FilingSingleComponent
       }]
     }, {
       path: '**', component: FilingTableComponent
