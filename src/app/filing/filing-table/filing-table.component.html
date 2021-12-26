@@ -1,3 +1,20 @@
-<ag-grid-angular style="width: 100%; height: 300px;" class="ag-theme-alpine" [rowData]="records"
-  [columnDefs]="columnDefs">
+<div class="m-2 d-flex flex-column">
+  <div class="align-self-end">
+    <span><b>Status</b></span>
+    <div class="d-inline mx-2">
+      <i class="me-1 bi bi-circle text-danger"></i>
+      <span>Not Available</span>
+    </div>
+    <div class="d-inline mx-2">
+      <i class="me-1 bi bi-circle-half text-secondary"></i>
+      <span>Partial Available</span>
+    </div>
+    <div class="d-inline mx-2">
+      <i class="me-1 bi bi-circle-fill text-success"></i>
+      <span>Fully Available</span>
+    </div>
+  </div>
+</div>
+<ag-grid-angular #filingGrid style="width: 100%; height: 56vh;" class="ag-theme-alpine" [rowData]="records"
+  [frameworkComponents]="frameworkComponents" [columnDefs]="columnDefs">
 </ag-grid-angular>
